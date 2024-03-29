@@ -36,10 +36,10 @@ class BinaryTree {
 				~BinaryTree	(void);
 				BinaryTree	(const BinaryTree &newBT);
 				BinaryTree	(const pair<int, char>& item);
-		BinaryTree& operator=	(const BinaryTree &newBT);
-		BinaryTree 	Combine		(const BinaryTree &otherBT);
+		BinaryTree& 	operator=	(const BinaryTree &newBT);
+		BinaryTree 	Combine	(const BinaryTree &otherBT);
 		void 		Insert 	(const pair<int, char>& item);
-		string 		Search 	(const char letter);
+		string 	Search 	(const char letter);
 
 		pair<int, char> GetCountChar (void);
 };

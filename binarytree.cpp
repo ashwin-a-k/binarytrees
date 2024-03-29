@@ -19,11 +19,20 @@ BinaryTree::BinaryTree(void) : root(nullptr) {}
 
 //========================================================
 // destructor
+// Deletes root of binary tree
+// Parameters: none
+// returns nothing
 //========================================================
 BinaryTree::~BinaryTree(void) {
     Clear(root);
 }
 
+//========================================================
+// Clear
+// Clears tree of values
+// Parameters: Node* del_root
+// returns nothing
+//========================================================
 void BinaryTree::Clear(Node* del_root) {
     if (del_root == nullptr)
         return;
@@ -36,12 +45,21 @@ void BinaryTree::Clear(Node* del_root) {
 
 //========================================================
 // copy constructor
+// copies one tree to another
+// Parameters: const BinaryTree &newBT
+// returns Binary Tree
 //========================================================
 BinaryTree::BinaryTree(const BinaryTree &newBT) : root(nullptr) {
     if (newBT.root)
         root = Copy(newBT.root);
 }
 
+//========================================================
+// copy function
+// copies all values of a tree to another tree
+// Parameters: Node* newBT
+// returns nothing
+//========================================================
 BinaryTree::Node* BinaryTree::Copy(Node* newBT) {
     if (!newBT)
         return nullptr;
@@ -55,6 +73,9 @@ BinaryTree::Node* BinaryTree::Copy(Node* newBT) {
 
 //========================================================
 // assignment operator
+// basic assignment with binary trees
+// Parameters: binarytree
+// returns *this
 //========================================================
 BinaryTree& BinaryTree::operator=(const BinaryTree &newBT) {
     if (this != &newBT) {
@@ -64,6 +85,12 @@ BinaryTree& BinaryTree::operator=(const BinaryTree &newBT) {
     return *this;
 }
 
+//========================================================
+// Combine
+// combines two trees together
+// Parameters: otherBT
+// returns new Binary tree
+//========================================================
 BinaryTree BinaryTree::Combine(const BinaryTree &otherBT) {
     if (!this->root)
         return otherBT;
@@ -86,10 +113,22 @@ BinaryTree BinaryTree::Combine(const BinaryTree &otherBT) {
     return output;
 }
 
+//========================================================
+// Insert
+// Inserts pair item in list
+// Parameters: pair item
+// returns nothing
+//========================================================
 void BinaryTree::Insert(const pair<int, char>& item) {
     root = Insert_aux(root, item);
 }
 
+//========================================================
+// Insert_aux
+// Inserts specific pair in left or right node
+// Parameters: Node* myNode pair item
+// returns myNode
+//========================================================
 BinaryTree::Node* BinaryTree::Insert_aux(Node* myNode, const pair<int, char>& item) {
     if (!myNode)
         return new Node(item);
@@ -102,14 +141,31 @@ BinaryTree::Node* BinaryTree::Insert_aux(Node* myNode, const pair<int, char>& it
     return myNode;
 }
 
+//========================================================
+// GetCharCount
+// returns number of chars
+// Parameters: none
+// returns number of chars
+//========================================================
 pair<int, char> BinaryTree::GetCountChar(void) {
     return root->count_char;
 }
 
+//========================================================
+// constructor with pair parameter
+// Parameters: none
+// returns new binary tree
+//========================================================
 BinaryTree::BinaryTree(const pair<int, char>& item) : root(nullptr) {
     this->Insert(item);
 }
 
+//========================================================
+// Search
+// Searches through Binary tree for letter
+// Parameters: char letter
+// returns searched item
+//========================================================
 string BinaryTree::Search(const char letter) {
     vector<string> path;
     string output = "";
@@ -123,6 +179,12 @@ string BinaryTree::Search(const char letter) {
     return output;
 }
 
+//========================================================
+// Search_aux
+// Returns true or false whether searched item is found
+// Parameters: Node* curr_node, char target, vector<string>& path
+// returns boolean value true or false
+//========================================================
 bool BinaryTree::Search_aux(Node* curr_node, char target, vector<string>& path) {
     if (!curr_node)
         return false;
