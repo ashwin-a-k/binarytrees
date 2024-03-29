@@ -19,7 +19,7 @@ BinaryTree<T>::BinaryTree(void)
     root->left = NULL;
     root->right = NULL;
     root->parent = NULL;
-    root->item = NULL;
+    // beware of item
 }
 
 //========================================================
@@ -61,12 +61,54 @@ BinaryTree::~BinaryTree	(void) {
 template<class T>
 void BinaryTree<T>::PreWalkDelete(BinaryTree<T> &BT) {
 	Node* ptr = BT->root;
+    BT->item = myBT->item;
     BT->left = myBT->left;
     BT->right = myBT->right;
 
     PreWalkDelete(ptr->left)
     PreWalkDelete(ptr->right)
 }
+template<class T> 
+void BinaryTree<T>::insert(const T& item)
+{
+    Node* ptr = new Node;
+    ptr->item = item;
+    ptr->left = NULL;
+    ptr->right = NULL;
 
+    if (root == NULL)
+    {
+        root = ptr;
+    }
 
+    Node* qtr = root;
+    while (qtr != NULL)
+    {
+        parent = qtr;
+
+        // smaller than parent, smaller than both children
+        if (item < qtr->item and item <= qtr->right->item and item <= qtr->left->item)
+        {
+            if (qtr->right->item > qtr->left->item)
+            {
+                qtr = qtr->right;
+            }
+            else
+            {
+                qtr = qtr->left
+            }
+        }
+        else if (item < qtr->item)
+        {
+            if (item > qtr->right->item and item > qtr->left->item)
+            {
+                if (qtr->right > qtr->left)
+                {
+                    break;
+                }
+            }
+        }
+        
+    }
+}
 

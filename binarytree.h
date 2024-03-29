@@ -5,96 +5,6 @@
 // March 2024
 //======================================================
 
-#ifndef COUNTCHARACTER_H
-#define COUNTCHARACTER_H
-
-class CountChar {
-	public:
-		CountChar(void);
-		~CountChar(void);
-		CountChar& operator=(const CountChar&myCountChar);
-		bool operator==(const CountChar&myCountChar);
-		bool operator>(const CountChar&myCountChar);
-		bool operator<(const CountChar&myCountChar);
-		bool operator>=(const CountChar&myCountChar);
-		bool operator<=(const CountChar&myCountChar);
-		bool operator!=(const CountChar&myCountChar);
-	private:
-		int count;
-		char character;
-}
-
-CountChar::CountChar(void)
-{
-	count = 0;
-	character = '';
-}
-
-CountChar::~CountChar(void)
-{
-	count = 0;
-	character = '';
-}
-
-CountChar& CountChar::operator=(const CountChar&myCountChar)
-{
-	count = myCountChar.count;
-	character = myCountChar.character;
-}
-
-CountChar& CountChar::operator==(const CountChar&myCountChar)
-{
-	if (count == myCountChar.count and character == myCountChar.character) // might not need character
-		return true;
-	return false;
-}
-
-CountChar& CountChar::operator>(const CountChar&myCountChar)
-{
-	if (count > myCountChar.count)
-		return true;
-	return false;
-}
-
-CountChar& CountChar::operator<(const CountChar&myCountChar)
-{
-	if (count < myCountChar.count)
-		return true;
-	return false;
-}
-
-CountChar& CountChar::operator>=(const CountChar&myCountChar)
-{
-	if (count >= myCountChar.count)
-		return true;
-	return false;
-}
-
-CountChar& CountChar::operator<=(const CountChar&myCountChar)
-{
-	if (count <= myCountChar.count)
-		return true;
-	return false;
-}
-
-CountChar& CountChar::operator>=(const CountChar&myCountChar)
-{
-	if (count >= myCountChar.count)
-		return true;
-	return false;
-}
-
-CountChar& CountChar::operator!=(const CountChar&myCountChar)
-{
-	if (count != myCountChar.count)
-		return true;
-	return false;
-}
-
-
-
-#endif
-
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
 
@@ -112,13 +22,9 @@ public:
 
 private:
 	struct Node {
-		CountChar item;
+		T item;
 		Node* left;
 		Node* right;
-		Node* parent;
+		Node* parent; // might be using
 	};
 	Node* root;
-}
-
-#include "binarytree.cpp"
-#endif
