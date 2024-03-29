@@ -36,12 +36,13 @@ class BinaryTree {
 				~BinaryTree	(void);
 				BinaryTree	(const BinaryTree &newBT);
 				BinaryTree	(const pair<int, char>& item);
-		BinaryTree& 	operator=	(const BinaryTree &newBT);
+		BinaryTree& operator=	(const BinaryTree &newBT);
 		BinaryTree 	Combine	(const BinaryTree &otherBT);
 		void 		Insert 	(const pair<int, char>& item);
-		string 	Search 	(const char letter);
-
+		void 		PathInsert 	(const pair<int, char>& item, const string path);
+		string 		Search 	(const char letter);
 		pair<int, char> GetCountChar (void);
+		string		Decoder	(const string walk);
 };
 
 class Compare {

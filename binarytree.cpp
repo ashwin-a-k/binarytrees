@@ -203,3 +203,55 @@ bool BinaryTree::Search_aux(Node* curr_node, char target, vector<string>& path) 
 
     return false;
 }
+
+void BinaryTree::PathInsert(const pair<int, char>& item, const string path) {
+    if (path.empty()) {
+        root = new Node(item);
+        return;
+    }
+    if (!root)
+        root = new Node(pair<int, char>(0, char(0)));
+
+    Node* curr = root;
+
+    for (int i=0; i < path.length(); ++i) {
+        if (path[i] == '0') {
+            if (curr->left == nullptr) {
+                if (i == path.length() - 1)
+                    curr->left = new Node(item);
+                else
+                    curr->left = new Node(pair<int, char>(0, char(0)));
+            }
+            curr = curr->left;
+        } else if (path[i] == '1') {
+            if (curr->right == nullptr) {
+                if (i == path.length() - 1)
+                    curr->right = new Node(item);
+                else
+                    curr->right = new Node(pair<int, char>(0, char(0)));
+            }
+            curr = curr->right;
+        }
+    }
+    root->count_char = item;
+}
+
+string BinaryTree::Decoder(const string path) {
+    string output = "";
+
+    Node* curr = root;
+    for (int i=0; i < path.length(); ++i) {
+        if (curr == nullptr)
+            break;
+        if (path[i] == '0')
+            curr = curr->left;
+        else if (path[i] == '1')
+            curr = curr->right;
+        if (!curr->left and !curr->right) {
+            output += curr->count_char.second;
+            curr = root;
+        }
+    }
+
+    return output;
+}
