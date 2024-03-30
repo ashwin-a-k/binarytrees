@@ -1,22 +1,27 @@
-CXX = g++
-CXXFLAGS = -Wall -std=c++11
+CC = g++
+CFLAGS = -Wall -g
 
-all: encode decode
+DECODE_SRC = binarytree.cpp decode.cpp
+HUFFMAN_SRC = binarytree.cpp huffman.cpp
 
-encode: encode.o binarytree.o
-    $(CXX) $(CXXFLAGS) -o encode encode.o binarytree.o
+DECODE_OBJ = $(DECODE_SRC:.cpp=.o)
+HUFFMAN_OBJ = $(HUFFMAN_SRC:.cpp=.o)
 
-decode: decode.o binarytree.o
-    $(CXX) $(CXXFLAGS) -o decode decode.o binarytree.o
+DECODE_EXEC = decode
+HUFFMAN_EXEC = huffman
 
-encode.o: encode.cpp binarytree.h
-    $(CXX) $(CXXFLAGS) -c encode.cpp
+all: $(DECODE_EXEC) $(HUFFMAN_EXEC)
 
-decode.o: decode.cpp binarytree.h
-    $(CXX) $(CXXFLAGS) -c decode.cpp
+$(DECODE_EXEC): $(DECODE_OBJ)
+	$(CC) $(CFLAGS) -o $(DECODE_EXEC) $(DECODE_OBJ)
 
-binarytree.o: binarytree.cpp binarytree.h
-    $(CXX) $(CXXFLAGS) -c binarytree.cpp
+$(HUFFMAN_EXEC): $(HUFFMAN_OBJ)
+	$(CC) $(CFLAGS) -o $(HUFFMAN_EXEC) $(HUFFMAN_OBJ)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $<
 
 clean:
-    rm -f encode decode *.o
+	rm -f $(DECODE_OBJ) $(HUFFMAN_OBJ) $(DECODE_EXEC) $(HUFFMAN_EXEC)
+
+.PHONY: clean

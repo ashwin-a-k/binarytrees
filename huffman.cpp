@@ -1,16 +1,12 @@
 #include "binarytree.h"
 #include <fstream>
+#include <iostream>
 #include <queue>
 #include <string>
 
 using namespace std;
 
 int	main( int argc, char *argv[] ) {
-    if ( argc != 1 ) {
-        printf("Error: you must include frequency table\n");
-        exit(0);
-    }
-
     priority_queue<BinaryTree, vector<BinaryTree>, Compare> PQ;
 
     string line;

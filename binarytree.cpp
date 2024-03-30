@@ -204,6 +204,12 @@ bool BinaryTree::Search_aux(Node* curr_node, char target, vector<string>& path) 
     return false;
 }
 
+//========================================================
+// PathInsert
+// Insert an item into a Binary Tree using provided encoded path
+// Parameters: const pair<int, char>& item, const string path
+// returns nothing
+//========================================================
 void BinaryTree::PathInsert(const pair<int, char>& item, const string path) {
     if (path.empty()) {
         root = new Node(item);
@@ -214,7 +220,7 @@ void BinaryTree::PathInsert(const pair<int, char>& item, const string path) {
 
     Node* curr = root;
 
-    for (int i=0; i < path.length(); ++i) {
+    for (size_t i=0; i < path.length(); ++i) {
         if (path[i] == '0') {
             if (curr->left == nullptr) {
                 if (i == path.length() - 1)
@@ -236,11 +242,17 @@ void BinaryTree::PathInsert(const pair<int, char>& item, const string path) {
     root->count_char = item;
 }
 
+//========================================================
+// Decoder
+// Handle the decoding of Huffman under the hood
+// Parameters: const string path
+// returns decoded string
+//========================================================
 string BinaryTree::Decoder(const string path) {
     string output = "";
 
     Node* curr = root;
-    for (int i=0; i < path.length(); ++i) {
+    for (size_t i=0; i < path.length(); ++i) {
         if (curr == nullptr)
             break;
         if (path[i] == '0')
@@ -252,6 +264,5 @@ string BinaryTree::Decoder(const string path) {
             curr = root;
         }
     }
-
     return output;
 }

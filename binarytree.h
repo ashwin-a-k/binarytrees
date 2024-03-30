@@ -54,6 +54,4 @@ class Compare {
 		}
 };
 
-#include "binarytree.cpp"
-
 #endif
