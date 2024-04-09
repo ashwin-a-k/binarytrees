@@ -5,26 +5,60 @@ Professor Kretchmar
 Project 5: Binary Tree Huffman Coding
 Daniel Chu, Ashwin Krishnamurthy, Jianheng Guo
 
-1. Count Frequency
+# Huffman Coding Project Documentation
 
-`count.py` parses in `WarPeace.txt` and outputs a letter frequency table file - `frequency.txt`.
+## Overview
 
-2. Binary Tree Class
+This project involves implementing Huffman Coding using a binary tree data structure in C++. The main objectives are to parse the novel "War and Peace" for letter frequency, construct a binary tree to represent this frequency, and then apply Huffman Coding for efficient data encoding and decoding.
 
-`binarytree.h` and `binarytree.cpp` contain the implementation of the Binary Tree class and do most the tree manipulations under the hood for other components. We use std::pair of STL as the basis of the data node type.
+## File Descriptions
 
-3. Priority Queue
+- `WarPeace.txt`: The text file containing the novel "War and Peace" used for analyzing letter frequency.
+- `binarytree.cpp` and `binarytree.h`: C++ source files defining the `BinaryTree` class used for constructing the binary tree and implementing Huffman Coding.
+- `count.py`: Python script for counting letter frequencies in the text file. Outputs `frequency.txt`.
+- `encode.py`: Python script that encodes a given text using the Huffman Coding scheme generated from `WarPeace.txt`.
+- `decode.cpp`: C++ program that decodes the encoded text back to its original form using the Huffman Coding scheme.
+- `huffman.cpp`: Main C++ program that reads the frequency data, constructs the Huffman tree, and generates the encoding scheme.
 
-`huffman.cpp` implements the Huffman coding by using STL priority queue class with our Binary Tree class. It expects a letter frequency table file to be passed in and write to a new file `code_table.txt` with the encoding table.
+## Instructions
 
-4. Encode
+1. **Frequency Analysis**:
+    - Run `count.py` on `WarPeace.txt` to generate `frequency.txt`, containing each letter's frequency.
 
-`encode.py` asks for the code vector file and text to be encoded names then parses them and writes the results to a new file `encoded.txt`.
+2. **Building the Huffman Tree**:
+    - Compile `huffman.cpp` and `binarytree.cpp` with `g++` or an equivalent C++ compiler.
+    - Run the resulting executable, feeding it `frequency.txt`, to produce `code_table.txt`, which contains the Huffman Codes for each character.
 
-5. Decode
+3. **Encoding Text**:
+    - Use `encode.py` to encode a text file using the Huffman Codes from `code_table.txt`. The output is a binary string representing the encoded text.
 
-`decode.cpp` also asks for the code vector file but rather it recreates the binary tree structure to then decode any message read from a file.
+4. **Decoding Text**:
+    - Compile `decode.cpp` and run the resulting executable to decode a binary string back into readable text using the Huffman tree.
 
-6. Song 
+## Compilation and Execution
 
-`song.txt` is our chosen song.
+- Compile the C++ programs using a command similar to `g++ -o huffman huffman.cpp binarytree.cpp`.
+- Run the programs as follows:
+    ```
+    ./huffman < frequency.txt > code_table.txt
+    python encode.py < input.txt > encoded.txt
+    ./decode < encoded.txt > decoded.txt
+    ```
+
+## Dependencies
+
+- C++ compiler (e.g., GCC, Clang)
+- Python interpreter (for `count.py` and `encode.py`)
+
+## Project Structure
+
+- Source code: `binarytree.cpp`, `binarytree.h`, `huffman.cpp`, `decode.cpp`
+- Scripts: `count.py`, `encode.py`
+- Data files: `WarPeace.txt`, `frequency.txt`, `code_table.txt`
+- Output: Encoded and decoded text files
+
+## Additional Notes
+
+- Thoroughly comment your code to explain the implementation of the binary tree and Huffman Coding.
+- Ensure proper error handling in reading files and processing data.
+- Optimize the binary tree and Huffman Coding implementation for efficiency and readability.
